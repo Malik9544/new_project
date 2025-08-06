@@ -44,7 +44,7 @@ with st.sidebar:
     education = st.selectbox("Select Your Education Level", education_options)
     job_title = st.selectbox("Select Your Job Title", job_title_options)
 
-    st.subheader("⏳ Experience")
+    st.subheader(" Experience")
     experience = st.slider("Years of Experience", 0.0, 40.0, 2.0, 0.5)
 
     st.markdown("---")
@@ -61,7 +61,7 @@ with col2:
 st.markdown("---")
 
 # Predict button
-if st.button("🎯 Predict Salary Now"):
+if st.button(" Predict Salary Now"):
     edu_encoded = edu_mapping.get(education, 0)
     job_encoded = job_mapping.get(job_title, 0)
     input_data = np.array([[experience, edu_encoded, job_encoded]])
@@ -71,7 +71,7 @@ if st.button("🎯 Predict Salary Now"):
         predicted_salary = model.predict(input_data)[0]
 
     # Display result
-    st.markdown("### 🧾 **Prediction Result**")
+    st.markdown("###  **Prediction Result**")
     col1, col2 = st.columns(2)
     col1.metric(label="Predicted Salary", value=f"${predicted_salary:,.2f}")
     col2.metric(label="Years of Experience", value=f"{experience} years")
@@ -94,10 +94,10 @@ if st.button("🎯 Predict Salary Now"):
 
     log_df.to_csv(log_file, index=False)
 
-    st.success("📝 Prediction logged successfully!")
+    st.success(" Prediction logged successfully!")
 
     # Plotly chart for salary trend
-    st.markdown("### 📈 Predicted Salary Trend")
+    st.markdown("###  Predicted Salary Trend")
     x_vals = np.linspace(0, 40, 100)
     y_vals = [model.predict([[x, edu_encoded, job_encoded]])[0] for x in x_vals]
 
@@ -113,7 +113,7 @@ if st.button("🎯 Predict Salary Now"):
     st.plotly_chart(fig, use_container_width=True)
 
 # Model metrics
-with st.expander("📊 Model Performance (Random Forest Regressor)"):
+with st.expander(" Model Performance (Random Forest Regressor)"):
     st.markdown("""
     | Metric   | Value     |
     |----------|-----------|
@@ -124,7 +124,7 @@ with st.expander("📊 Model Performance (Random Forest Regressor)"):
     """)
 
 # Logs
-with st.expander("🧾 View Prediction Logs"):
+with st.expander(" View Prediction Logs"):
     if os.path.exists("prediction_log.csv"):
         log_data = pd.read_csv("prediction_log.csv")
         st.dataframe(log_data.tail(20), use_container_width=True)
