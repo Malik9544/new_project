@@ -94,7 +94,7 @@ if st.button("🎯 Predict Salary Now"):
     x_vals = np.linspace(0, 40, 100)
     y_vals = [model.predict([[x, edu_encoded, job_encoded]])[0] for x in x_vals]
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(7, 3.5))
     ax.plot(x_vals, y_vals, color="#00BFFF", label="Trend")
     ax.scatter(experience, predicted_salary, color='red', s=100, label="Your Prediction")
     ax.set_xlabel("Years of Experience")
@@ -114,6 +114,15 @@ with st.expander("📊 Model Performance (Random Forest Regressor)"):
     | RMSE     | 13,897.33 |
     | R² Score | 0.9194    |
     """)
+
+# --- VIEW LOGS ---
+with st.expander("🧾 View Prediction Logs"):
+    if os.path.exists("prediction_log.csv"):
+        log_data = pd.read_csv("prediction_log.csv")
+        st.dataframe(log_data.tail(20), use_container_width=True)
+        st.download_button("⬇️ Download Full Log as CSV", data=log_data.to_csv(index=False), file_name="prediction_log.csv", mime="text/csv")
+    else:
+        st.info("No predictions logged yet.")
 
 # --- ABOUT ---
 with st.expander("ℹ️ About This App"):
