@@ -39,8 +39,8 @@ job_mapping = {val: idx for idx, val in enumerate(job_title_options)}
 
 # Sidebar - user input
 with st.sidebar:
-    st.title("📥 User Input")
-    st.subheader("🎓 Education & Career")
+    st.title("User Input")
+    st.subheader("Education & Career")
     education = st.selectbox("Select Your Education Level", education_options)
     job_title = st.selectbox("Select Your Job Title", job_title_options)
 
@@ -53,7 +53,7 @@ with st.sidebar:
 # Main title and intro with picture
 col1, col2 = st.columns([8, 1])
 with col1:
-    st.markdown("<h1 style='text-align: center;'>💼 Interactive Salary Prediction App</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'> Interactive Salary Prediction App</h1>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: center;'>Predict your salary using Machine Learning trained on real-world employee data.</p>", unsafe_allow_html=True)
 with col2:
     st.image("https://avatars.githubusercontent.com/u/191113155?v=4", width=80)
