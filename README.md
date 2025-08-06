@@ -2,8 +2,9 @@
 
  A modern, interactive Streamlit web app that predicts salary based on **Education Level**, **Job Title**, and **Years of Experience**, using a trained **Random Forest Regressor** model.
 
-![App Screenshot](<img width="1366" height="606" alt="Screenshot 2025-08-06 213358" src="https://github.com/user-attachments/assets/69210fb1-d02e-408f-8387-4a33839f0e18" />
-) <!-- Optional: add your own screenshot -->
+<h3>📸 App Preview</h3>
+<img src="https://github.com/user-attachments/assets/69210fb1-d02e-408f-8387-4a33839f0e18" alt="App Screenshot" width="800"/>
+
 
 ---
 
