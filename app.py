@@ -2,7 +2,7 @@ import streamlit as st
 import pickle
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
+import plotly.graph_objects as go
 import os
 import datetime
 import time
@@ -46,13 +46,6 @@ job_mapping = {val: idx for idx, val in enumerate(job_title_options)}
 # Sidebar - user input
 with st.sidebar:
     st.title("📥 User Input")
-    uploaded_photo = st.file_uploader("Upload Your Photo", type=["jpg", "jpeg", "png"])
-    if uploaded_photo is not None:
-        st.image(uploaded_photo, use_column_width=True, caption="👤 Your Uploaded Photo")
-    else:
-        st.image("https://cdn-icons-png.flaticon.com/512/847/847969.png", width=200, caption="👤 Default Avatar")
-
-    st.markdown("---")
     st.subheader("🎓 Education & Career")
     education = st.selectbox("Select Your Education Level", education_options)
     job_title = st.selectbox("Select Your Job Title", job_title_options)
@@ -63,9 +56,13 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("🔗 *App developed by [MUHAMMAD_MUDASIR](https://github.com/Malik9544)*")
 
-# Main title and intro
-st.markdown("<h1 style='text-align: center;'>💼 Interactive Salary Prediction App</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center;'>Predict your salary using Machine Learning trained on real-world employee data.</p>", unsafe_allow_html=True)
+# Main title and intro with picture
+col1, col2 = st.columns([8, 1])
+with col1:
+    st.markdown("<h1 style='text-align: center;'>💼 Interactive Salary Prediction App</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center;'>Predict your salary using Machine Learning trained on real-world employee data.</p>", unsafe_allow_html=True)
+with col2:
+    st.image("https://avatars.githubusercontent.com/u/191113155?v=4", width=80)
 
 st.markdown("---")
 
@@ -105,20 +102,21 @@ if st.button("🎯 Predict Salary Now"):
 
     st.success("📝 Prediction logged successfully!")
 
-    # Animated chart (simulated with short delay)
+    # Plotly chart for salary trend
     st.markdown("### 📈 Predicted Salary Trend")
     x_vals = np.linspace(0, 40, 100)
     y_vals = [model.predict([[x, edu_encoded, job_encoded]])[0] for x in x_vals]
 
-    fig, ax = plt.subplots(figsize=(7, 3.5))
-    ax.plot(x_vals, y_vals, color="#00BFFF", label="Trend")
-    ax.scatter(experience, predicted_salary, color='red', s=100, label="Your Prediction")
-    ax.set_xlabel("Years of Experience")
-    ax.set_ylabel("Salary")
-    ax.set_title(f"{job_title} with {education}")
-    ax.legend()
-    ax.grid(True)
-    st.pyplot(fig)
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=x_vals, y=y_vals, mode='lines', name='Trend', line=dict(color='#00BFFF')))
+    fig.add_trace(go.Scatter(x=[experience], y=[predicted_salary], mode='markers',
+                             name='Your Prediction', marker=dict(size=10, color='red')))
+    fig.update_layout(title=f"Salary Trend for {job_title} with {education}",
+                      xaxis_title='Years of Experience',
+                      yaxis_title='Salary',
+                      template='plotly_white',
+                      height=400)
+    st.plotly_chart(fig, use_container_width=True)
 
 # Model metrics
 with st.expander("📊 Model Performance (Random Forest Regressor)"):
