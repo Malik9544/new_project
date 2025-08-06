@@ -15,12 +15,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Theme toggle
-st.sidebar.markdown("### 🌓 Choose Theme")
-theme = st.sidebar.radio("", ["Light", "Dark"], index=0, horizontal=True)
-if theme == "Dark":
-    st.markdown("""<style>body { background-color: #1e1e1e; color: white; }</style>""", unsafe_allow_html=True)
-
 # Load model
 @st.cache_resource
 def load_model():
