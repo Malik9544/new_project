@@ -5,6 +5,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 import datetime
+import time
 
 # Page config
 st.set_page_config(
@@ -14,6 +15,12 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# Theme toggle
+st.sidebar.markdown("### 🌓 Choose Theme")
+theme = st.sidebar.radio("", ["Light", "Dark"], index=0, horizontal=True)
+if theme == "Dark":
+    st.markdown("""<style>body { background-color: #1e1e1e; color: white; }</style>""", unsafe_allow_html=True)
+
 # Load model
 @st.cache_resource
 def load_model():
@@ -21,7 +28,7 @@ def load_model():
 
 model = load_model()
 
-# Encoded mappings (simulate LabelEncoder from training)
+# Encoded mappings
 education_options = [
     'Associate Degree', 'Bachelor’s Degree', 'Master’s Degree', 'Doctorate',
     'High School', 'Professional Certification', 'Diploma'
@@ -36,32 +43,43 @@ job_title_options = [
 edu_mapping = {val: idx for idx, val in enumerate(education_options)}
 job_mapping = {val: idx for idx, val in enumerate(job_title_options)}
 
-# --- SIDEBAR ---
+# Sidebar - user input
 with st.sidebar:
-    st.image("https://cdn-icons-png.flaticon.com/512/3064/3064197.png", width=80)
-    st.title("🔧 Input Options")
-
-    education = st.selectbox("🎓 Education Level", education_options)
-    job_title = st.selectbox("💼 Job Title", job_title_options)
-    experience = st.slider("⌛ Years of Experience", 0.0, 40.0, 2.0, 0.5)
+    st.title("📥 User Input")
+    uploaded_photo = st.file_uploader("Upload Your Photo", type=["jpg", "jpeg", "png"])
+    if uploaded_photo is not None:
+        st.image(uploaded_photo, use_column_width=True, caption="👤 Your Uploaded Photo")
+    else:
+        st.image("https://cdn-icons-png.flaticon.com/512/847/847969.png", width=200, caption="👤 Default Avatar")
 
     st.markdown("---")
-    st.markdown("📌 *App developed by [MUHAMMAD_MUDASIR](https://github.com/Malik9544)*")
+    st.subheader("🎓 Education & Career")
+    education = st.selectbox("Select Your Education Level", education_options)
+    job_title = st.selectbox("Select Your Job Title", job_title_options)
 
-# --- MAIN CONTENT ---
+    st.subheader("⏳ Experience")
+    experience = st.slider("Years of Experience", 0.0, 40.0, 2.0, 0.5)
+
+    st.markdown("---")
+    st.markdown("🔗 *App developed by [MUHAMMAD_MUDASIR](https://github.com/Malik9544)*")
+
+# Main title and intro
 st.markdown("<h1 style='text-align: center;'>💼 Interactive Salary Prediction App</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center;'>Predict your salary using Machine Learning trained on real-world employee data.</p>", unsafe_allow_html=True)
 
 st.markdown("---")
 
-# Button to Predict
+# Predict button
 if st.button("🎯 Predict Salary Now"):
     edu_encoded = edu_mapping.get(education, 0)
     job_encoded = job_mapping.get(job_title, 0)
     input_data = np.array([[experience, edu_encoded, job_encoded]])
-    predicted_salary = model.predict(input_data)[0]
 
-    # Display prediction
+    with st.spinner("Generating prediction..."):
+        time.sleep(1.2)
+        predicted_salary = model.predict(input_data)[0]
+
+    # Display result
     st.markdown("### 🧾 **Prediction Result**")
     col1, col2 = st.columns(2)
     col1.metric(label="Predicted Salary", value=f"${predicted_salary:,.2f}")
@@ -76,7 +94,6 @@ if st.button("🎯 Predict Salary Now"):
         'predicted_salary': predicted_salary
     }
 
-    # Save to CSV
     log_file = 'prediction_log.csv'
     if os.path.exists(log_file):
         log_df = pd.read_csv(log_file)
@@ -86,10 +103,9 @@ if st.button("🎯 Predict Salary Now"):
 
     log_df.to_csv(log_file, index=False)
 
-    # Success message
     st.success("📝 Prediction logged successfully!")
 
-    # Visual
+    # Animated chart (simulated with short delay)
     st.markdown("### 📈 Predicted Salary Trend")
     x_vals = np.linspace(0, 40, 100)
     y_vals = [model.predict([[x, edu_encoded, job_encoded]])[0] for x in x_vals]
@@ -104,7 +120,7 @@ if st.button("🎯 Predict Salary Now"):
     ax.grid(True)
     st.pyplot(fig)
 
-# --- METRICS ---
+# Model metrics
 with st.expander("📊 Model Performance (Random Forest Regressor)"):
     st.markdown("""
     | Metric   | Value     |
@@ -115,7 +131,7 @@ with st.expander("📊 Model Performance (Random Forest Regressor)"):
     | R² Score | 0.9194    |
     """)
 
-# --- VIEW LOGS ---
+# Logs
 with st.expander("🧾 View Prediction Logs"):
     if os.path.exists("prediction_log.csv"):
         log_data = pd.read_csv("prediction_log.csv")
@@ -124,7 +140,7 @@ with st.expander("🧾 View Prediction Logs"):
     else:
         st.info("No predictions logged yet.")
 
-# --- ABOUT ---
+# About
 with st.expander("ℹ️ About This App"):
     st.info("""
     This salary prediction app was built as part of the **2025 Summer Internship at DIGIPEX Solutions LLC**.
@@ -135,7 +151,7 @@ with st.expander("ℹ️ About This App"):
     - 📈 Visualization shows salary trend across experience years
     """)
 
-# --- FOOTER ---
+# Footer
 st.markdown("""
 <hr style="border:1px solid #ccc;">
 <p style='text-align:center; font-size: 14px;'>
