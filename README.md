@@ -1,92 +1,93 @@
-# 💼 Salary Prediction Using Traditional ML Techniques
+#  Salary Prediction App using Machine Learning
 
-This project is part of the **2025 Summer Internship Program – AI Track** at **DIGIPEX Solutions LLC**. The goal is to build a regression model that predicts an employee's salary based on years of experience using traditional machine learning techniques, and to deploy this model using **Streamlit** on **Render**.
+ A modern, interactive Streamlit web app that predicts salary based on **Education Level**, **Job Title**, and **Years of Experience**, using a trained **Random Forest Regressor** model.
 
----
-
-## 📌 Table of Contents
-
-- [Overview](#overview)
-- [Dataset](#dataset)
-- [Project Phases](#project-phases)
-- [Model Evaluation](#model-evaluation)
-- [Streamlit App](#streamlit-app)
-- [Tech Stack](#tech-stack)
-- [How to Run Locally](#how-to-run-locally)
-- [Project Structure](#project-structure)
-- [License](#license)
+![App Screenshot](https://user-images.githubusercontent.com/191113155/your_app_preview.png) <!-- Optional: add your own screenshot -->
 
 ---
 
-## 🧠 Overview
+##  Live Demo
 
-This project involves:
-- Exploring and preprocessing employee salary data
-- Training multiple regression models (Linear Regression and Random Forest)
-- Evaluating performance using standard regression metrics
-- Deploying the best model in an interactive Streamlit web application
+ [Click here to try the live app](https://newproject-kcfm8virodwdudjirh3iy7.streamlit.app/)
 
 ---
 
-## 📊 Dataset
+## 📊 Features
 
-- Dataset Name: **Employee Data for Salary Prediction**
-- Source: [Kaggle](https://www.kaggle.com/datasets/iamsouravbanerjee/employee-data-for-salary-prediction)
-- Features Used: 
-  - `YearsExperience` (float)
-  - `Salary` (float - target variable)
-
----
-
-## 🔍 Project Phases
-
-1. **Data Preprocessing**: Cleaned dataset, handled datatypes
-2. **Feature Engineering**: No derived features needed
-3. **Model Building**: Linear Regression & Random Forest Regressor
-4. **Evaluation**: Metrics compared across models
-5. **Deployment**: Streamlit app deployed on Render
+✅ Predicts salary using real-world trained machine learning model  
+✅ Built with **Scikit-learn**, **Pandas**, and **Streamlit**  
+✅ Clean and modern UI with interactive sidebar inputs  
+✅ Real-time predictions with a dynamic Plotly salary trend chart  
+✅ Downloadable prediction logs  
+✅ Profile icon integration for personalization  
+✅ Performance metrics displayed with expand/collapse view
 
 ---
 
-## 📈 Model Evaluation
+##  Model Used
 
-| Metric   | Linear Regression | Random Forest |
-| -------- | ----------------- | ------------- |
-| MAE      | ✅ **6286.45**     | 6872.01       |
-| MSE      | ✅ **49.8M**       | 63.7M         |
-| RMSE     | ✅ **7059.04**     | 7982.55       |
-| R² Score | ✅ **0.9024**      | 0.8753        |
-
-> ✅ Final Model Selected: **Linear Regression**
-
----
-
-## 🌐 Streamlit App
-
-🔗 **Live Demo:** [Click here to try the app][(🔗 **Live Demo:** [Click here to try the app](https://salarypredictionmodel-8tfx9nxanp55wrqoxgbgm3.streamlit.app)
-
-
-Features:
-- Input: Years of Experience (slider)
-- Output: Predicted Salary
-- Real-time prediction
+- **Random Forest Regressor**
+- Trained on a dataset with the following features:
+  - Age
+  - Gender
+  - Education Level
+  - Job Title
+  - Years of Experience
+  - Salary (Target)
 
 ---
 
-## 🧰 Tech Stack
+##  Tech Stack
 
-- **Python**
-- **Pandas, NumPy**
-- **scikit-learn**
-- **Matplotlib, Seaborn**
-- **Streamlit**
-- **Render** (for deployment)
+| Tool / Library     | Usage                        |
+|--------------------|------------------------------|
+| `streamlit`        | Frontend web app framework   |
+| `scikit-learn`     | Machine Learning model       |
+| `pandas`           | Data manipulation & logging  |
+| `numpy`            | Input formatting             |
+| `plotly`           | Interactive trend chart      |
+| `matplotlib`       | (Backup charting, optional)  |
 
 ---
 
-## 💻 How to Run Locally
+##  Project Structure
 
-1. Clone this repo:
-   ```bash
-   git clone https://github.com/yourusername/salary-prediction-ml.git
-   cd salary-prediction-ml
+salary-prediction-ml/
+│
+├── app.py # Streamlit app code
+├── salary_model.pkl # Trained ML model
+├── prediction_log.csv # Logs of predictions
+├── requirements.txt # Dependencies
+├── README.md # Project documentation
+└── notebook.ipynb # Model training & EDA
+
+##  Installation
+
+```bash
+# Clone the repo
+git clone https://github.com/Malik9544/Salary_prediction_Model.git
+cd Salary_prediction_Model
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the app
+streamlit run app.py
+
+🧾 Logs
+Every prediction is logged with:
+
+Timestamp
+
+Education Level
+
+Job Title
+
+Years of Experience
+
+Predicted Salary
+
+📂 Log file: prediction_log.csv
+📥 Downloadable from within the app interface.
+
+
