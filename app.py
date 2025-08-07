@@ -103,9 +103,9 @@ if page == "🎯 Predict Salary":
             log_df = pd.DataFrame([log_entry])
 
         log_df.to_csv(log_file, index=False)
-        st.success("📝 Prediction logged successfully!")
+        st.success(" Prediction logged successfully!")
 
-        st.markdown("### 📈 Predicted Salary Trend")
+        st.markdown("###  Predicted Salary Trend")
         x_vals = np.linspace(0, 40, 100)
         y_vals = [model.predict([[x, edu_encoded, job_encoded]])[0] for x in x_vals]
 
@@ -120,8 +120,8 @@ if page == "🎯 Predict Salary":
                           height=400)
         st.plotly_chart(fig, use_container_width=True)
 
-elif page == "📈 Analytics":
-    st.header("📊 Salary Data Analytics")
+elif page == " Analytics":
+    st.header(" Salary Data Analytics")
 
     st.subheader("1. Average Salary by Job Title")
     avg_salary_job = df.groupby("Job Title")['Salary'].mean().sort_values(ascending=False)
@@ -143,8 +143,8 @@ elif page == "📈 Analytics":
     fig3.update_layout(height=400)
     st.plotly_chart(fig3, use_container_width=True)
 
-elif page == "📊 Model Info":
-    st.header("📊 Model Performance (Random Forest Regressor)")
+elif page == " Model Info":
+    st.header(" Model Performance (Random Forest Regressor)")
     st.markdown("""
     | Metric   | Value     |
     |----------|-----------|
@@ -167,10 +167,10 @@ elif page == "ℹ️ About":
     st.info("""
     This salary prediction app was built as part of the **2025 Summer Internship at DIGIPEX Solutions LLC**.
 
-    - ✅ Built with Python, Streamlit, and Scikit-learn  
-    - ✅ Predicts salary using Education Level, Job Title, and Years of Experience  
-    - ✅ Random Forest Regressor for prediction  
-    - 📈 Data-driven visual insights with Plotly  
+    -  Built with Python, Streamlit, and Scikit-learn  
+    -  Predicts salary using Education Level, Job Title, and Years of Experience  
+    -  Random Forest Regressor for prediction  
+    -  Data-driven visual insights with Plotly  
     """)
 
 # Feedback form in sidebar
@@ -185,7 +185,7 @@ with st.sidebar.expander("📬 Feedback / Contact"):
 st.markdown("""
 <hr style="border:1px solid #ccc;">
 <p style='text-align:center; font-size: 14px;'>
-🚀 Created with ❤️ by <a href='https://github.com/Malik9544' target='_blank'>MUHAMMAD_MUDASIR</a> |
+Created by <a href='https://github.com/Malik9544' target='_blank'>MUHAMMAD_MUDASIR</a> |
 <a href='https://salarypredictionmodel-8tfx9nxanp55wrqoxgbgm3.streamlit.app/' target='_blank'>Live App</a> |
 <a href='https://github.com/Malik9544/Salary_prediction_Model' target='_blank'>GitHub Repo</a>
 </p>
