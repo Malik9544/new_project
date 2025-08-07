@@ -2,7 +2,7 @@
 
  A modern, interactive Streamlit web app that predicts salary based on **Education Level**, **Job Title**, and **Years of Experience**, using a trained **Random Forest Regressor** model.
 
-<h3>📸 App Preview</h3>
+<h3> App Preview</h3>
 <img src="https://github.com/user-attachments/assets/69210fb1-d02e-408f-8387-4a33839f0e18" alt="App Screenshot" width="800"/>
 
 
@@ -10,11 +10,11 @@
 
 ##  Live Demo
 
- [Click here to try the live app](https://salary-prediction-model-5udbcarflpvsibe5ep9mxj.streamlit.app/)
+ [Click here to try the live app](https://salary-prediction-model-nqxpe3jvccimkaz26rxxsm.streamlit.app/))
 
 ---
 
-## 📊 Features
+##  Features
 
 ✅ Predicts salary using real-world trained machine learning model  
 ✅ Built with **Scikit-learn**, **Pandas**, and **Streamlit**  
@@ -76,7 +76,7 @@ pip install -r requirements.txt
 # Run the app
 streamlit run app.py
 
-🧾 Logs
+ Logs
 Every prediction is logged with:
 
 Timestamp
