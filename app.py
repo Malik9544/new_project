@@ -56,9 +56,10 @@ with st.sidebar:
 
     if st.button("Submit Feedback"):
         if name and email and message:
-            # Google Sheets auth
+            # Google Sheets auth using secrets
             scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-            credentials = Credentials.from_service_account_file("credentials.json", scopes=scope)
+            service_account_info = st.secrets["gcp_service_account"]
+            credentials = Credentials.from_service_account_info(service_account_info, scopes=scope)
             client = gspread.authorize(credentials)
             sheet = client.open("UserFeedback").sheet1
 
