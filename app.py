@@ -54,20 +54,28 @@ with st.sidebar:
     email = st.text_input("Your Email")
     message = st.text_area("Your Feedback or Suggestion")
 
-    if st.button("Submit Feedback"):
-        if name and email and message:
-            # Google Sheets auth using secrets
+    import json
+
+if st.button("Submit Feedback"):
+    if name and email and message:
+        try:
             scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+
+            # Load secrets from Streamlit
             service_account_info = st.secrets["gcp_service_account"]
             credentials = Credentials.from_service_account_info(service_account_info, scopes=scope)
+
             client = gspread.authorize(credentials)
             sheet = client.open("UserFeedback").sheet1
 
             timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             sheet.append_row([name, email, message, timestamp])
             st.success("✅ Feedback submitted successfully!")
-        else:
-            st.warning("Please fill out all fields before submitting.")
+        except Exception as e:
+            st.error(f"❌ Error submitting feedback: {e}")
+    else:
+        st.warning("Please fill out all fields before submitting.")
+
 
     st.markdown("🔗 *App developed by [MUHAMMAD_MUDASIR](https://github.com/Malik9544)*")
 
