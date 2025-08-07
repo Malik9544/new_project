@@ -73,7 +73,7 @@ with st.sidebar:
 # Main title and intro with picture
 col1, col2 = st.columns([8, 1])
 with col1:
-    st.markdown("<h1 style='text-align: center;'> Interactive Salary Prediction App</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>💼 Interactive Salary Prediction App</h1>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: center;'>Predict your salary using Machine Learning trained on real-world employee data.</p>", unsafe_allow_html=True)
 with col2:
     st.image("https://avatars.githubusercontent.com/u/191113155?v=4", width=80)
@@ -156,17 +156,17 @@ with st.expander("ℹ️ About This App"):
     st.info("""
     This salary prediction app was built as part of the **2025 Summer Internship at DIGIPEX Solutions LLC**.
 
-    -  Built with Python, Streamlit, and Scikit-learn  
-    -  Predicts salary using Education Level, Job Title, and Years of Experience  
-    -  Model used: Random Forest Regressor  
-    -  Visualization shows salary trend across experience years
+    - ✅ Built with Python, Streamlit, and Scikit-learn  
+    - ✅ Predicts salary using Education Level, Job Title, and Years of Experience  
+    - ✅ Model used: Random Forest Regressor  
+    - 📈 Visualization shows salary trend across experience years
     """)
 
 # Footer
 st.markdown("""
 <hr style="border:1px solid #ccc;">
 <p style='text-align:center; font-size: 14px;'>
-🚀 Created  by <a href='https://github.com/Malik9544' target='_blank'>MUHAMMAD_MUDASIR</a> |
+🚀 Created with ❤️ by <a href='https://github.com/Malik9544' target='_blank'>MUHAMMAD_MUDASIR</a> |
 <a href='https://salarypredictionmodel-8tfx9nxanp55wrqoxgbgm3.streamlit.app/' target='_blank'>Live App</a> |
 <a href='https://github.com/Malik9544/Salary_prediction_Model' target='_blank'>GitHub Repo</a>
 </p>
