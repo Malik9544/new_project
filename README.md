@@ -1,8 +1,9 @@
 #  Salary Prediction App using Machine Learning
 
  A modern, interactive Streamlit web app that predicts salary based on **Education Level**, **Job Title**, and **Years of Experience**, using a trained **Random Forest Regressor** model.
-<h3>📸 App Preview</h3>
-<img src="https://github.com/user-attachments/assets/6c1df2a9-8444-40a4-b1ac-5021177e5c72" alt="App Screenshot" width="800"/>
+<h3>App Preview</h3>
+<img src="https://i.postimg.cc/GpPbyTLW/Screenshot-2025-08-07-210224.png" alt="App Screenshot" width="800"/>
+
 
 
 
